@@ -6,7 +6,7 @@ from random import randint
 import numpy, blend_modes # For overlay blending
 import glob, os, sys
 
-from tools import check_update_needed, paste_to, overlay_bluetransp, bluewhite_to_transp, mask_image
+from tools import check_update_needed, paste_to, overlay_bluetransp, bluewhite_to_transp, mask_image, openttd_palettise
 
 if os.path.isdir("pygen") == False: os.mkdir("pygen")
 
@@ -137,7 +137,7 @@ for bridge_key in bridge_list:
     bridge_image_path = bridge_list[bridge_key]
     bridgemask_image_path = bridgemask
     infrastructure_image_path = os.path.join("..", "..", "infrastructure", str(tile_size), "pygen", infrastructure_list[infrastructure_key])
-    bridge_palmask_path = os.path.join(infrastructure_list[infrastructure_key][:len("_32bpp.png")]+"_palmask.png")
+    bridge_palmask_path = bridge_list[bridge_key][:-len("_32bpp.png")]+"_palmask.png"
     image_output_path = os.path.join("pygen", bridge_key+"_"+infrastructure_key+"_32bpp.png")
     palmask_output_path = os.path.join("pygen", bridge_key+"_"+infrastructure_key+"_palmask.png")
     # main image
@@ -153,7 +153,7 @@ for bridge_key in bridge_list:
       mask_target_image = Image.new("RGBA", bridge_image.size, (255, 255, 255, 255))
       for i in range(int((bridge_image.size[0] - 1) / (tile_size + 1))):
         infrastructure_target_image = paste_to(infrastructure_image, tile_positions[i % len(tile_positions)][0], tile_positions[i % len(tile_positions)][1], tile_positions[i % len(tile_positions)][2], tile_positions[i % len(tile_positions)][3], infrastructure_target_image, i * (tile_size // scale + 1) + 1, 1 + v_offs[i % len(tile_positions)], scale)
-        mask_target_image = paste_to(bridgemask_image, 1 + (i % len(tile_positions)) * (tile_size + 1), 0, tile_size, bridge_image.size[1], mask_target_image, i * (tile_size // scale + 1) + 1, 0, scale)
+        mask_target_image = paste_to(bridgemask_image, 1 + (i % len(tile_positions)) * (tile_size // scale + 1), 0, tile_size, bridge_image.size[1], mask_target_image, i * (tile_size // scale + 1) + 1, 0, scale)
       target_image = mask_image(infrastructure_target_image, mask_target_image)
       # Overlay for 32bpp image
       if composite_over:
@@ -167,6 +167,6 @@ for bridge_key in bridge_list:
       # if update is needed
       # Load palmask image, if it exists
       if os.path.isfile(bridge_palmask_path):
-        bridge_image_palmask = Image.open()
-        target_image_palmask.putpalette(palimg.getpalette())
-        target_image_palmask.save(palmask_output_path)
+        bridge_image_palmask = Image.open(bridge_palmask_path)
+        bridge_image_palmask = openttd_palettise(bridge_image_palmask)
+        bridge_image_palmask.save(palmask_output_path)

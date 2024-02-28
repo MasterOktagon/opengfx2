@@ -30,15 +30,15 @@ base_graphics spr1063(1063, "../graphics/stations/general/64/pygen/raildepots_re
 
 //1069-1086 rail station
 base_graphics spr1069(1069, "../graphics/stations/general/64/pygen/railstations_8bpp.png") { template_rail_station(0, 0, 1) }
+#ez alternative_sprites (spr1069, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "../graphics/stations/general/256/pygen/railstations_8bpp.png") { template_rail_station(0, 0, 4) }
 #32 alternative_sprites (spr1069, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "../graphics/stations/general/64/pygen/railstations_rm32bpp.png", "../graphics/stations/general/64/pygen/railstations_8bpp.png") { template_rail_station(0, 0, 1) }
-#ez alternative_sprites (spr1069, ZOOM_LEVEL_NORMAL, BIT_DEPTH_8BPP, "../graphics/stations/general/256/pygen/railstations_8bpp.png") { template_rail_station(0, 0, 4) }
 #32 #ez alternative_sprites (spr1069, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "../graphics/stations/general/256/pygen/railstations_rm32bpp.png", "../graphics/stations/general/256/pygen/railstations_8bpp.png") { template_rail_station(0, 0, 4) }
 
 //1087-1092 monorail overlays
-base_graphics spr1087(1087, "../graphics/infrastructure/64/monorail_bits_8bpp.png") { template_railoverlay_base(0, 0, 1) }
-#ez alternative_sprites(spr1087, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "../graphics/infrastructure/256/monorail_bits_8bpp.png") { template_railoverlay_base(0, 0, 4) }
-#32 alternative_sprites(spr1087, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "../graphics/infrastructure/64/monorail_bits_bt32bpp.png") { template_railoverlay_base(0, 0, 1) }
-#32 #ez alternative_sprites(spr1087, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "../graphics/infrastructure/256/monorail_bits_bt32bpp.png") { template_railoverlay_base(0, 0, 4) }
+base_graphics spr1087(1087, "../graphics/infrastructure/64/monorail_bits_masked_8bpp.png") { template_railoverlay_base(0, 0, 1) }
+#ez alternative_sprites(spr1087, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "../graphics/infrastructure/256/monorail_bits_masked_8bpp.png") { template_railoverlay_base(0, 0, 4) }
+#32 alternative_sprites(spr1087, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "../graphics/infrastructure/64/monorail_bits_masked_bt32bpp.png") { template_railoverlay_base(0, 0, 1) }
+#32 #ez alternative_sprites(spr1087, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "../graphics/infrastructure/256/monorail_bits_masked_bt32bpp.png") { template_railoverlay_base(0, 0, 4) }
 
 //1093-1118 monorail track temperate grass
 base_graphics spr1093(1093, "../graphics/infrastructure/64/pygen/monorail_temperate_grass_8bpp.png") { template_railtiles(0, 0, 1) }
@@ -129,8 +129,10 @@ base_graphics spr1263(1263, "../graphics/cursors/1/pygen/default_8bpp.png") {
 }
 
 //1275-1290 signals
-base_graphics spr1275(1275, "../graphics/signals/64/base_8bpp.png") { template_signals_base(1) }
-#32 alternative_sprites (spr1275, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "../graphics/signals/64/base_bt32bpp.png") { template_signals_base(1) }
+base_graphics spr1275(1275, "../graphics/signals/64/base_8bpp.png") { template_signals_base(1, 0) }
+#32 alternative_sprites(spr1275, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "../graphics/signals/64/base_bt32bpp.png") { template_signals_base(1, 0) }
+#ez alternative_sprites(spr1275, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "../graphics/signals/256/base_8bpp.png") { template_signals_base(4, 0) }
+#32 #ez alternative_sprites(spr1275, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "../graphics/signals/256/base_bt32bpp.png") { template_signals_base(4, 0) }
 
 //1291-1300 signal, depot and station gui elements
 //1291 signal icon
